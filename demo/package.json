@@ -1,0 +1,9 @@
+{
+   "private": true,
+   "scripts": {
+      "build": "tsc && rollup -c"
+   },
+   "devDependencies": {
+      "rollup-plugin-alias": "^1.5.1"
+   }
+}

@@ -1,0 +1,35 @@
+{
+   "name": "pink-trombone-mod",
+   "version": "0.1.0",
+   "description": "A modularized version of the Pink Trombone voice synthesizer",
+   "type": "module",
+   "keywords": [
+      "Pink Trombone",
+      "speech",
+      "voice",
+      "synthesizer"
+   ],
+   "license": "MIT",
+   "repository": "github:chdh/pink-trombone-mod",
+   "contributors": [
+      {
+         "name": "Neil Thapen",
+         "url": "http://venuspatrol.nfshost.com"
+      },
+      {
+         "name": "Christian d'Heureuse",
+         "email": "chdh@inventec.ch",
+         "url": "http://www.source-code.biz"
+      }
+   ],
+   "scripts": {
+      "clean": "node build.js clean",
+      "build": "node build.js build",
+      "prepack": "node build.js verifyCurrentDirIsDist",
+      "doPack": "cd dist && npm pack",
+      "doPublish": "cd dist && npm publish"
+   },
+   "devDependencies": {
+      "rimraf": "^2.6.3"
+   }
+}
