@@ -7,7 +7,7 @@ import {AppTouch, Button} from "./GuiUtils";
 
 export const enum Screen {main, instructions, about}
 
-const projectUrl = "github.com/chdh/pink-tronbone-mod";
+const projectUrl = "github.com/chdh/pink-trombone-mod";
 
 // Main user interface of the Pink Trombone voice synthesizer.
 export class MainUi extends EventTarget {

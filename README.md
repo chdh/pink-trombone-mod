@@ -21,7 +21,7 @@ to synthesize human speech sounds.
   http://sal.arizona.edu/sites/default/files/story_jasa2005.pdf
 
 - Lu, Hui-Ling, and J. O. Smith. "Glottal source modeling for singing voice synthesis."<br>
-  Proceedings of the 2000 International Computer Music Conference. 2000.
+  Proceedings of the 2000 International Computer Music Conference, 2000.
 
 - Mullen, Jack. Physical modelling of the vocal tract with the 2D digital waveguide mesh.<br>
   PhD thesis, University of York, 2006.<br>
