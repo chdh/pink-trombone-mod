@@ -6,6 +6,7 @@
       "lib": ["ES2017", "DOM", "DOM.Iterable"],
       "module": "ES6",
       "moduleResolution": "node",
+      "newLine": "lf",
       "noFallthroughCasesInSwitch": true,
       "noImplicitAny": true,
       "noImplicitReturns": true,

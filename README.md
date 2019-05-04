@@ -8,7 +8,7 @@ Pink Trombone uses two-dimensional
 [digital waveguide synthesis](https://en.wikipedia.org/wiki/Digital_waveguide_synthesis)
 to synthesize human speech sounds.
 
-**Online demo**: [chdh.github.io/pink-trombone-mod](http://chdh.github.io/pink-trombone-mod)<br>
+**Online demo**: [chdh.github.io/pink-trombone-mod](https://chdh.github.io/pink-trombone-mod)<br>
 **NPM package**: [pink-trombone-mod](https://www.npmjs.com/package/pink-trombone-mod)<br>
 
 ## Bibliographic references cited by Neil Thapen
