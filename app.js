@@ -714,7 +714,7 @@
         }
     }
 
-    const projectUrl = "github.com/chdh/pink-tronbone-mod";
+    const projectUrl = "github.com/chdh/pink-trombone-mod";
     class MainUi extends EventTarget {
         constructor(synthesizer, canvas) {
             super();
