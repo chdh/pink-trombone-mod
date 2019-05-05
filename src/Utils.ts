@@ -2,6 +2,10 @@ export function clamp(x: number, min: number, max: number): number {
    return (x < min) ? min : (x > max) ? max : x;
 }
 
+export function interpolate(v1: number, v2: number, pos: number): number {
+   return v1 * (1 - pos) + v2 * pos;
+}
+
 export function moveTowards(current: number, target: number, amountUp: number, amountDown: number): number {
    return (current < target) ? Math.min(current + amountUp, target) : Math.max(current - amountDown, target);
 }

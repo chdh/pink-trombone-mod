@@ -1,6 +1,6 @@
 import {Glottis} from "./Glottis";
 import * as Utils from "./Utils";
-import {clamp} from "./Utils";
+import {clamp, interpolate} from "./Utils";
 
 export interface Transient {
    position:                           number;
@@ -138,7 +138,7 @@ export class Tract {
       this.junctionOutputLeft[this.n] = this.right[this.n - 1] * this.lipReflection;
 
       for (let i = 1; i < this.n; i++) {
-         const r = this.reflection[i] * (1 - lambda) + this.newReflection[i] * lambda;
+         const r = interpolate(this.reflection[i],  this.newReflection[i], lambda);
          const w = r * (this.right[i - 1] + this.left[i]);
          this.junctionOutputRight[i] = this.right[i - 1] - w;
          this.junctionOutputLeft[i] = this.left[i] + w;
@@ -147,11 +147,11 @@ export class Tract {
       // now at junction with nose
       {
          const i = this.noseStart;
-         let r = this.newReflectionLeft * (1 - lambda) + this.reflectionLeft * lambda;
+         let r = interpolate(this.reflectionLeft, this.newReflectionLeft, lambda);
          this.junctionOutputLeft[i] = r * this.right[i - 1] + (1 + r) * (this.noseLeft[0] + this.left[i]);
-         r = this.newReflectionRight * (1 - lambda) + this.reflectionRight * lambda;
+         r = interpolate(this.reflectionRight, this.newReflectionRight, lambda);
          this.junctionOutputRight[i] = r * this.left[i] + (1 + r) * (this.right[i - 1] + this.noseLeft[0]);
-         r = this.newReflectionNose * (1 - lambda) + this.reflectionNose * lambda;
+         r = interpolate(this.reflectionNose, this.newReflectionNose, lambda);
          this.noseJunctionOutputRight[0] = r * this.noseLeft[0] + (1 + r) * (this.left[i] + this.right[i - 1]);
       }
 

@@ -1,5 +1,5 @@
 import * as Utils from "./Utils";
-import {clamp} from "./Utils";
+import {clamp, interpolate} from "./Utils";
 import * as NoiseGenerator from "./NoiseGenerator";
 
 export class Glottis {
@@ -112,8 +112,8 @@ export class Glottis {
    }
 
    private setupWaveform(lambda: number) {
-      const frequency = this.oldFrequency * (1 - lambda) + this.newFrequency * lambda;
-      const tenseness = this.oldTenseness * (1 - lambda) + this.newTenseness * lambda;
+      const frequency = interpolate(this.oldFrequency, this.newFrequency, lambda);
+      const tenseness = interpolate(this.oldTenseness, this.newTenseness, lambda);
       this.waveformLength = 1 / frequency;
       this.loudness = Math.pow(Math.max(0, tenseness), 0.25);
 
