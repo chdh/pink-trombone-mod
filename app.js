@@ -110,6 +110,9 @@
     function clamp(x, min, max) {
         return (x < min) ? min : (x > max) ? max : x;
     }
+    function interpolate(v1, v2, pos) {
+        return v1 * (1 - pos) + v2 * pos;
+    }
     function moveTowards(current, target, amountUp, amountDown) {
         return (current < target) ? Math.min(current + amountUp, target) : Math.max(current - amountDown, target);
     }
@@ -1209,8 +1212,8 @@
             return vibrato;
         }
         setupWaveform(lambda) {
-            const frequency = this.oldFrequency * (1 - lambda) + this.newFrequency * lambda;
-            const tenseness = this.oldTenseness * (1 - lambda) + this.newTenseness * lambda;
+            const frequency = interpolate(this.oldFrequency, this.newFrequency, lambda);
+            const tenseness = interpolate(this.oldTenseness, this.newTenseness, lambda);
             this.waveformLength = 1 / frequency;
             this.loudness = Math.pow(Math.max(0, tenseness), 0.25);
             const rd = clamp(3 * (1 - tenseness), 0.5, 2.7);
@@ -1330,18 +1333,18 @@
             this.junctionOutputRight[0] = this.left[0] * this.glottalReflection + glottalOutput;
             this.junctionOutputLeft[this.n] = this.right[this.n - 1] * this.lipReflection;
             for (let i = 1; i < this.n; i++) {
-                const r = this.reflection[i] * (1 - lambda) + this.newReflection[i] * lambda;
+                const r = interpolate(this.reflection[i], this.newReflection[i], lambda);
                 const w = r * (this.right[i - 1] + this.left[i]);
                 this.junctionOutputRight[i] = this.right[i - 1] - w;
                 this.junctionOutputLeft[i] = this.left[i] + w;
             }
             {
                 const i = this.noseStart;
-                let r = this.newReflectionLeft * (1 - lambda) + this.reflectionLeft * lambda;
+                let r = interpolate(this.reflectionLeft, this.newReflectionLeft, lambda);
                 this.junctionOutputLeft[i] = r * this.right[i - 1] + (1 + r) * (this.noseLeft[0] + this.left[i]);
-                r = this.newReflectionRight * (1 - lambda) + this.reflectionRight * lambda;
+                r = interpolate(this.reflectionRight, this.newReflectionRight, lambda);
                 this.junctionOutputRight[i] = r * this.left[i] + (1 + r) * (this.right[i - 1] + this.noseLeft[0]);
-                r = this.newReflectionNose * (1 - lambda) + this.reflectionNose * lambda;
+                r = interpolate(this.reflectionNose, this.newReflectionNose, lambda);
                 this.noseJunctionOutputRight[0] = r * this.noseLeft[0] + (1 + r) * (this.left[i] + this.right[i - 1]);
             }
             for (let i = 0; i < this.n; i++) {
